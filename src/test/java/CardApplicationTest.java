@@ -1,17 +1,10 @@
-import com.codeborne.selenide.SelenideElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selectors.byClassName;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class CardApplicationTest {
     private WebDriver driver;
@@ -38,56 +31,61 @@ public class CardApplicationTest {
 
     @Test
     void test1() {
-        open("http://localhost:9999/");
-        SelenideElement form = $(byClassName("form"));
-        form.$("[data-test-id=name] input").setValue("Иванов Алексей");
-        form.$("[data-test-id=phone] input").setValue("+79824622505");
-        form.$("[data-test-id=agreement]").click();
-        form.$(byClassName("button")).click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        driver.get("http://localhost:9999/");
+        WebElement form = driver.findElement(By.className("form"));
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Алексей");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79824622505");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
     @Test
     void test2() {
-        open("http://localhost:9999/");
-        SelenideElement form = $(byClassName("form"));
-        form.$("[data-test-id=name] input").setValue("Иванов-Ван Алексей");
-        form.$("[data-test-id=phone] input").setValue("+79824622505");
-        form.$("[data-test-id=agreement]").click();
-        form.$(byClassName("button")).click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        driver.get("http://localhost:9999/");
+        WebElement form = driver.findElement(By.className("form"));
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов-Ван Алексей");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79824622505");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
     @Test
     void test3() {
-        open("http://localhost:9999/");
-        SelenideElement form = $(byClassName("form"));
-        form.$("[data-test-id=name] input").setValue("Иванов-ван Алексей");
-        form.$("[data-test-id=phone] input").setValue("+79824622505");
-        form.$("[data-test-id=agreement]").click();
-        form.$(byClassName("button")).click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        driver.get("http://localhost:9999/");
+        WebElement form = driver.findElement(By.className("form"));
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов-ван Алексей");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79824622505");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
     @Test
     void test4() {
-        open("http://localhost:9999/");
-        SelenideElement form = $(byClassName("form"));
-        form.$("[data-test-id=name] input").setValue("Иванов Ван Алексей");
-        form.$("[data-test-id=phone] input").setValue("+79824622505");
-        form.$("[data-test-id=agreement]").click();
-        form.$(byClassName("button")).click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        driver.get("http://localhost:9999/");
+        WebElement form = driver.findElement(By.className("form"));
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Ван Алексей");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79824622505");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
     @Test
     void test5() {
-        open("http://localhost:9999/");
-        SelenideElement form = $(byClassName("form"));
-        form.$("[data-test-id=name] input").setValue("Иванов Ван-Алексей");
-        form.$("[data-test-id=phone] input").setValue("+79824622505");
-        form.$("[data-test-id=agreement]").click();
-        form.$(byClassName("button")).click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        driver.get("http://localhost:9999/");
+        WebElement form = driver.findElement(By.className("form"));
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Ван-Алексей");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79824622505");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 }
